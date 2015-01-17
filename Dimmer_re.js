@@ -1,17 +1,32 @@
+//Stage is responsible for handling scenes
+//and all actions performed on them.
 var Stage = function () {
-	var stageSet = [];
+	//Array to hold each Scene as they do not require unique identifiers.
+	//This will always initialize to an empty scene.
+	var stageSet = [
+		new Scene()
+		];
+	var sceneLoaded = 0;
 }
 
-Stage.prototype.changeScene = function(set) {
+//
+Stage.prototype.changeScene = function(set, currentScene) {
 
 }
 
 var Scene = function () {
-    var ctx = document.getElementById('mainCanvas').getContext('2d');
-	
-	var sceneObjects = [
-		new Tile(0, 0, false)
-	];
+	var sceneObjects = [];
+	this.init();
+}
+
+Scene.prototype.init = function (objects) {
+	//ctx will be a permanent 'object' as the canvas will always be
+	//present to draw to.
+	this.ctx = document.getElementById('mainCanvas').getContext('2d');
+}
+
+Scene.prototype.tearDown = function () {
+
 }
 
 var Tile = function (ctx, x, y, state) {
